@@ -14,8 +14,8 @@ class Tomteland {
     fun getUnderlings(bossName: String, emptyList: MutableList<String>): List<String> {
         fun checkUnderling(underlings: Set<String>): List<String>{
             val newUnderlings = underlings.toMutableSet()
-                .apply { underlings.forEach{e ->
-                    tomtar[e]?.let { addAll(it) }} }
+                .apply { underlings.forEach{tomte ->
+                    tomtar[tomte]?.let { addAll(it) }} }
 
             return if (newUnderlings == underlings) underlings.toList()
             else checkUnderling(newUnderlings)
