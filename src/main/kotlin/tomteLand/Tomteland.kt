@@ -11,17 +11,17 @@ class Tomteland {
         "Räven" to listOf("Gråsuggan", "Myran"),
         "Myran" to listOf("Bladlusen"))
 
-    fun getUnderlings(bossName: String, res: MutableList<String>): List<String> {
+    fun getUnderlings(bossName: String, emptyList: MutableList<String>): List<String> {
         fun checkUnderling(underlings: Set<String>): List<String>{
             val newUnderlings = underlings.toMutableSet()
                 .apply { underlings.forEach{e ->
                     tomtar[e]?.let { addAll(it) }} }
 
-            return if (newUnderlings == underlings) newUnderlings.toList()
+            return if (newUnderlings == underlings) underlings.toList()
             else checkUnderling(newUnderlings)
         }
-        tomtar[bossName]?.let { res.addAll(it) }
-        return checkUnderling(res.toSet())
+        tomtar[bossName]?.let { emptyList.addAll(it) }
+        return checkUnderling(emptyList.toSet())
     }
 
 }
