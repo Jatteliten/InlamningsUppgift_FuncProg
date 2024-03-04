@@ -17,7 +17,7 @@ class Tomteland {
                 .apply { underlings.forEach{e ->
                     tomtar[e]?.let { addAll(it) }} }
 
-            return if (newUnderlings.size == underlings.size) newUnderlings.toList()
+            return if (newUnderlings == underlings) newUnderlings.toList()
             else checkUnderling(newUnderlings)
         }
         tomtar[bossName]?.let { res.addAll(it) }

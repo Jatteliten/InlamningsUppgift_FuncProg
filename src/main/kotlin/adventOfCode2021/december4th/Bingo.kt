@@ -6,8 +6,8 @@ class Bingo {
     val data: List<String> = File("src/main/kotlin/adventOfCode2021/december4th/Input").readLines()
     val testData: List<String> = File("src/main/kotlin/adventOfCode2021/december4th/testInput").readLines()
 
-    class BoardEntry(var value: Int, var checked: Boolean = false)
-    class Board(var numbers: List<Int>, var lines: List<List<BoardEntry>>)
+    class BoardNumber(var value: Int, var checked: Boolean = false)
+    class Board(var numbers: List<Int>, var lines: List<List<BoardNumber>>)
 
     fun checkA(input: List<String>): Int {
         val draw = input[0].split(",").map { it.toInt() }
@@ -32,7 +32,7 @@ class Bingo {
                     lines.flatMap { e -> (e.trim().split("\\s+".toRegex())) }
                         .map { it.toInt() },
                     lines.map { e -> e.trim().split("\\s+".toRegex())
-                        .map { ex -> BoardEntry(ex.toInt()) }
+                        .map { ex -> BoardNumber(ex.toInt()) }
                     }
                 )
             }
