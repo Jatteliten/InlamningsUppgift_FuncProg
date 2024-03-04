@@ -11,12 +11,11 @@ class PositionChecker {
         fun check(index: Int, h: Int, v: Int): Int{
             return if (index == input.size) h*v
             else {
-                val command = input[index].split(" ").elementAt(0)
-                val value = input[index].split(" ").elementAt(1).toInt()
-                when (command) {
-                    "forward" -> check(index + 1, h + value, v)
-                    "down" -> check(index + 1, h, v + value)
-                    "up" -> check(index + 1, h, v - value)
+                val command = input[index].split(" ")
+                when (command.first) {
+                    "forward" -> check(index + 1, h + command.last.toInt(), v)
+                    "down" -> check(index + 1, h, v + command.last.toInt())
+                    "up" -> check(index + 1, h, v - command.last.toInt())
                     else -> throw IllegalArgumentException ("Invalid command")
                 }
             }
@@ -28,12 +27,11 @@ class PositionChecker {
         fun check(index: Int, aim: Int, h: Int, v: Int): Int{
             return if (index == input.size) h*v
             else {
-                val command = input[index].split(" ").elementAt(0)
-                val value = input[index].split(" ").elementAt(1).toInt()
-                when (command) {
-                    "forward" -> check(index + 1, aim, h + value, v + value * aim)
-                    "down" -> check(index + 1, aim + value, h, v)
-                    "up" -> check(index + 1, aim - value, h, v)
+                val command = input[index].split(" ")
+                when (command.first) {
+                    "forward" -> check(index + 1, aim, h + command.last.toInt(), v + command.last.toInt() * aim)
+                    "down" -> check(index + 1, aim + command.last.toInt(), h, v)
+                    "up" -> check(index + 1, aim - command.last.toInt(), h, v)
                     else -> throw IllegalArgumentException ("Invalid command")
                 }
 
