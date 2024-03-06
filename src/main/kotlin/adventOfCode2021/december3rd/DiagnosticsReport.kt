@@ -31,7 +31,12 @@ class DiagnosticsReport {
             return if(row == input[0].length) binary
             else{
                 var counter = 0
-                input.forEach{ c -> when (c[row]){'0' -> counter-- else -> counter++} }
+                input.forEach{ c ->
+                    if (c[row]=='0')
+                        counter--
+                    else
+                        counter++
+                }
                 when(gamma) {
                     true -> if (counter > 0) check(row + 1, binary + "1")
                                 else check(row + 1, binary + "0")
@@ -69,11 +74,12 @@ class DiagnosticsReport {
     }
 
     // solution inspired by chatGPT
+    // it suggested using sumOf, which is deprecated, so I changed it to mapping it into an IntArray
     private fun improvedCheckGammaOrEpsilon(gamma: Boolean, input: List<String>): String {
         fun check(row: Int, binary: String): String =
             if (row == input[0].length) binary
             else {
-                val counter = input.sumBy { c -> if (c[row] == '0') -1 else 1 }
+                val counter = input.map { c -> if (c[row] == '0') -1 else 1 }.toIntArray().sum()
 
                 check(row + 1, binary + if (gamma == (counter > 0)) "1" else "0")
             }
