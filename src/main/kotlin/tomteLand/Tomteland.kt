@@ -23,5 +23,5 @@ class Tomteland {
         tomtar[bossName]?.let { emptyList.addAll(it) }
         return checkUnderling(emptyList.toSet())
     }
-
+    
 }
