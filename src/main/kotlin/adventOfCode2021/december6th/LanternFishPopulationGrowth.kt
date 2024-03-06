@@ -35,13 +35,12 @@ class LanternFishPopulationGrowth {
                     when{
                         cycle == 0 && fish[cycle] > 0 -> {
                             bornFish = fish[cycle]
-                            fish[0] = 0
                         }
                         fish[cycle] > 0 -> {
                             fish[cycle - 1] += fish[cycle]
-                            fish[cycle] = 0
                         }
                     }
+                    fish[cycle] = 0
                 }
                 fish[6] += bornFish
                 fish[8] += bornFish
@@ -50,7 +49,7 @@ class LanternFishPopulationGrowth {
         }
 
         val fishList = MutableList(9) { 0L }
-        input[0].split(",").map { it.toLong() }.forEach { index -> fishList[index.toInt()]++ }
+        input[0].split(",").map { it }.forEach { index -> fishList[index.toInt()]++ }
         return check(fishList, 0, dayLimit)
     }
 
